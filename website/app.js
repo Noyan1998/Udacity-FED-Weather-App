@@ -1,6 +1,6 @@
 // Personal API Key for OpenWeatherMap API
 const appID = '1a09117c381d7902dc386c387ce1ec07';
-const baseURL = 'api.openweathermap.org/data/2.5/weather?';
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -11,7 +11,8 @@ document.getElementById('generate').addEventListener('click', calculateResults);
 
 /* Function called by event listener */
 function calculateResults(event) {
-    const zipCode = getElementById('zip').value;
+    const zipCode = document.getElementById('zip').value;
+    console.log(zipCode);
     getWeatherData(baseURL, zipCode);
 };
 
@@ -20,6 +21,7 @@ const getWeatherData = async (baseURL, zipCode) => {
     const response  = await fetch(baseURL + zipCode + '&appid=' + appID);
     try {
         const data = await response.json();
+        console.log(data);
     } catch(error) {
         console.log('error', error);
     };
@@ -53,3 +55,10 @@ const retrieveData = async(url='') => {
         console.log('error', error);
     };
 };
+
+
+/*
+- I'm calling the weather data properly
+- Need to think about integration with the other calls to server/client within the app
+- Looking at #4 on Development Strategy list
+*/

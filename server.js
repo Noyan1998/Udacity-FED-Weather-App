@@ -27,6 +27,17 @@ const server = app.listen(port, function () {
 });
 
 // GET route that returns projectData
+app.get('/all', function (request, response) {
+    response.send(projectData);
+});
 
 // POST route adding data to ProjectData
-
+app.post('add', function (request, response) {
+    newEntry = {
+        temperature: request.body.temperature,
+        date: request.body.temperature,
+        userResponse: request.body.userResponse
+    };
+    projectData.push(newEntry);
+    //response.send(projectData);
+});
